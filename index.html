@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-500">
+    <div id="app">
+        <h1 id="title" class="text-3xl font-bold text-center text-cyan-900">{{title}}</h1>
+        <h3 class="text-lg font-bold text-center text-zinc-300">Total Inventory: {{total}}</h3>
+        <div class="flex flex-col">
+        <input 
+        placeholder ="New Product"
+        type="text"
+        class="rounded p-2 w-10/12 mx-auto mt-4"
+        v-model="newProduct"
+        @change="addProduct"/>
+        <ul>
+            <li v-for="product in products" class="bg-white w-10/12 mx-auto mt-2 py-2 px-2 text-cyan-900 font-bold rounded shadow"
+            >
+            <span v-if="product.qty == 0"class="text-xs font-bold text-red-800">Out of Stock!</span>
+            <span v-else>{{product.qty}}</span> - {{product.name}}
+            <button class="bg-lime-700 ml-10 px-4 text-white rounded hover:bg-green-900" @click="product.qty++">+</button>
+            <button class="bg-red-700 ml-10 px-4 text-white rounded hover:bg-red-900" @click="product.qty--">-</button>
+            </li>
+            </ul>
+        </div>
+    </div>
+    <script src= "https://unpkg.com/vue@next"></script>
+    <script src="main.js"></script>
+</body>
+</html>
